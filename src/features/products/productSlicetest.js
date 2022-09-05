@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import back from "../back";
 export const productSlicetest = createSlice({
     name: 'productos',
     initialState: {
@@ -144,17 +145,17 @@ export const productSlicetest = createSlice({
 })
 
 const fetchProducts = createAsyncThunk('products/fetchProducts', () => {
-    return axios.get('http://localhost:3001/products')
+    return axios.get(back+'products')
     .then( response => response.data.db)
 })
 const fetchProduct = createAsyncThunk('products/fetchProduct', ({filter, value}) => {
     console.log(value);
-    return axios.get(`http://localhost:3001/products/?filter=${filter}&value=${value}`)
+    return axios.get(back+`products/?filter=${filter}&value=${value}`)
     .then( response => response.data)
 })
 const editProduct = createAsyncThunk('products/editProduct', ({id, findBy, infoUpdated}) => {
     // console.log(value);
-    return axios.put(`http://localhost:3001/products/update`, {
+    return axios.put(back+`products/update`, {
         id,
         findBy,
         infoUpdated
