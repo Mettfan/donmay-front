@@ -10,7 +10,7 @@ export  const ERROR = 'ERROR'
 let cookie  = new Cookies()
 export  const addProducts = ( products ) => async ( dispatch ) => {
 // let cookie = new Cookies()
-    await axios.post('http://don-mai.herokuapp.com/:3001/products/upload', { productos: products}).then(
+    await axios.post('http://don-mai.herokuapp.com/products/upload', { productos: products}).then(
         (response) => {
             console.log(response);
             console.log('passed');
