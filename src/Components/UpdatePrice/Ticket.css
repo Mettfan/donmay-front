@@ -1,0 +1,72 @@
+.totalTicketCalculated{
+    font-size: xx-large ;
+    font-weight: 600;
+    position: fixed;
+    right: 50px;
+    top: 70px;
+}
+.totalTicket{
+    font-size: large;
+    font-weight: 600;
+
+}
+.downSearchContainer{
+    position: relative;
+    top: -50px;
+}
+.productTicketAddedContainer{
+    display: flex;
+    /* position: fixed; */
+    justify-content: center;
+    /* left: 50%; */
+    bottom: 30px;
+
+}
+.productTicketAddedImage{
+    width: 30px;
+}
+.productTicketAdded{
+    padding: 10px;
+    background-color: orange;
+}
+.paymentInput{
+    position: fixed;
+    top: 50%;
+    right: 0px;
+}
+.productTicketAddedContainer{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 3px;
+    /* border-width: 1px;
+    border-color: blue; */
+    background-color: #FFD449;
+    position: relative;
+}
+.ticketContainer{
+    position: fixed;
+    top: 65px
+}
+
+.buttonRemoveProduct{
+    background-color: orangered;
+}
+.buttonAddProduct{
+    background-color: greenyellow;
+
+}
+.productTicketContainer{
+    display: flex;
+    position: fixed;
+    right: 0px;
+    bottom: 3%;
+}
+@media (max-width: 800px ){
+    .ticketContainer{
+        display: none;
+    }
+    .totalTicketCalculated{
+        top: 50%;
+        left: 20%;
+    }
+}
