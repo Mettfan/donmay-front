@@ -145,17 +145,17 @@ export const productSlicetest = createSlice({
 })
 
 const fetchProducts = createAsyncThunk('products/fetchProducts', () => {
-    return axios.get(back+'products')
+    return axios.get('https://don-mai.herokuapp.com/products')
     .then( response => response.data.db)
 })
 const fetchProduct = createAsyncThunk('products/fetchProduct', ({filter, value}) => {
     console.log(value);
-    return axios.get(back+`products/?filter=${filter}&value=${value}`)
+    return axios.get(`https://don-mai.herokuapp.com/products/?filter=${filter}&value=${value}`)
     .then( response => response.data)
 })
 const editProduct = createAsyncThunk('products/editProduct', ({id, findBy, infoUpdated}) => {
     // console.log(value);
-    return axios.put(back+`products/update`, {
+    return axios.put(`https://don-mai.herokuapp.com/products/update`, {
         id,
         findBy,
         infoUpdated
