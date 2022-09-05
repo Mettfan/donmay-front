@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import back from "../back";
+
 export const productSlicetest = createSlice({
     name: 'productos',
     initialState: {
