@@ -4,7 +4,7 @@ import axios from "axios";
 export function selectProduct(id = 1) {
     return new Promise((resolve) =>
       setTimeout(() =>{
-        axios.get('http://localhost:3001/products/?id=' + id).then( response => {
+        axios.get('http://don-mai.herokuapp.com/:3001/products/?id=' + id).then( response => {
             
             resolve({ data: response})
         })

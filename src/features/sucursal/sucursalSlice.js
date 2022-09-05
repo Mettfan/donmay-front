@@ -97,11 +97,11 @@ export const sucursalSlice = createSlice({
 })
 
 const createSucursal = createAsyncThunk('sucursales/createSucursal', ({sucursal}) => {
-    return axios.post('http://localhost:3001/sucursales', {sucursal: sucursal})
+    return axios.post('http://don-mai.herokuapp.com/:3001/sucursales', {sucursal: sucursal})
     .then( response => response.data.db)
 })
 const associateSucursalToUser = createAsyncThunk('sucursales/associateSucursalToUser', ({userId, sucursalId}) => {
-    return axios.post('http://localhost:3001/sucursales/add/user', {userId, sucursalId})
+    return axios.post('http://don-mai.herokuapp.com/:3001/sucursales/add/user', {userId, sucursalId})
     .then( response => response.data)
 })
 // const fetchSucursal = createAsyncThunk('users/fetchSucursal', ({filter, value, password}) => {
