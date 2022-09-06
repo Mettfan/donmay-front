@@ -139,8 +139,21 @@ export const productSlicetest = createSlice({
             state.error = action.error.message
             state.response = null
         })
-
-
+        
+        // ////////////
+        builder.addCase(postProducts.pending, state => {
+            state.loading = true
+        })
+        builder.addCase(postProducts.fulfilled, (state, action) => {
+            state.loading = false
+            state.response = action.payload
+            state.error = ''
+        })
+        builder.addCase(postProducts.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.error.message
+            state.response = null
+        })
     }
 })
 
@@ -162,6 +175,15 @@ const editProduct = createAsyncThunk('products/editProduct', ({id, findBy, infoU
     })
     .then( response => response.data)
 })
+const postProducts = createAsyncThunk('products/postProduct', ({products}) => {
+    return axios.post("https://don-mai.herokuapp.com/products/upload"), {
+        
+        products: [...products]
+        
+    }
+    .then( response => response.data)
+    
+})
 export const { 
     nextProduct, 
     previousProduct, 
@@ -171,9 +193,9 @@ export const {
     counterIncrement,
     setCounter,
     addProductToShoppingCart
-
 } = productSlicetest.actions
 export const productSliceReducer = productSlicetest.reducer
 export const fetchAllProducts = fetchProducts
 export const fetchOneProduct = fetchProduct
 export const editOneProduct = editProduct
+export const postProduct = postProducts
