@@ -70,7 +70,7 @@ export default function Convert () {
     }
     function uploadProducts(){
         if(productos){
-            dispatch(postProduct(productos))
+            dispatch(postProduct({productos}))
             console.log(status);
             
         }
