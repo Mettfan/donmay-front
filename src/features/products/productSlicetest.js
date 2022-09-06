@@ -176,6 +176,7 @@ const editProduct = createAsyncThunk('products/editProduct', ({id, findBy, infoU
     .then( response => response.data)
 })
 const postProducts = createAsyncThunk('products/postProduct', ({products}) => {
+    console.log(products);
     return axios.post("https://don-mai.herokuapp.com/products/upload"), {
         
         products: [...products]
