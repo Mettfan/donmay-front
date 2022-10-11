@@ -6,8 +6,8 @@ import Barcode from "react-barcode";
 import './Convert.css'
 import { addProducts } from "../../redux/actions/productActions";
 import { useDispatch } from "react-redux";
+import { PDFExport } from "@progress/kendo-react-pdf";
 import { postProduct } from "../../features/products/productSlicetest";
-// import { PDFExport } from "@progress/kendo-react-pdf";
 // import { JsonToExcel } from "react-json-to-excel"
 // import {fs} from 'fs';
 // import { Readable } from 'stream';
@@ -70,7 +70,7 @@ export default function Convert () {
     }
     function uploadProducts(){
         if(productos){
-            dispatch(postProduct({productos}))
+            dispatch(postProduct(productos))
             console.log(status);
             
         }
@@ -110,7 +110,7 @@ export default function Convert () {
             <button onClick={ () => saveProducts()}>Guardar Productos y Etiquetar</button>
             <button onClick={ () => uploadProducts()}>Subir Productos</button>
         </div>}
-        {/* <PDFExport fileName = 'barcodes.pdf' paperSize = 'A4' margin={'0cm'} ref= {pdf}> */}
+        <PDFExport fileName = 'barcodes.pdf' paperSize = 'A4' margin={'0cm'} ref= {pdf}>
 
             {
                 <div className="products">
@@ -138,7 +138,7 @@ export default function Convert () {
                     })}
                 </div>
             }
-        {/* </PDFExport> */}
+        </PDFExport>
         {
             productos && 
             <div>

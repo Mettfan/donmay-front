@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
 export const productSlicetest = createSlice({
     name: 'productos',
     initialState: {
@@ -139,51 +138,49 @@ export const productSlicetest = createSlice({
             state.error = action.error.message
             state.response = null
         })
-        
-        // ////////////
-        builder.addCase(postProducts.pending, state => {
+
+        builder.addCase(createProduct.pending, state => {
             state.loading = true
         })
-        builder.addCase(postProducts.fulfilled, (state, action) => {
+        builder.addCase(createProduct.fulfilled, (state, action) => {
             state.loading = false
             state.response = action.payload
             state.error = ''
         })
-        builder.addCase(postProducts.rejected, (state, action) => {
+        builder.addCase(createProduct.rejected, (state, action) => {
             state.loading = false
             state.error = action.error.message
             state.response = null
         })
+
+
     }
 })
 
 const fetchProducts = createAsyncThunk('products/fetchProducts', () => {
-    return axios.get('https://don-mai.herokuapp.com/products')
+    return axios.get('http://don-mai.herokuapp.com/products')
     .then( response => response.data.db)
 })
 const fetchProduct = createAsyncThunk('products/fetchProduct', ({filter, value}) => {
     console.log(value);
-    return axios.get(`https://don-mai.herokuapp.com/products/?filter=${filter}&value=${value}`)
+    return axios.get(`http://don-mai.herokuapp.com/products/?filter=${filter}&value=${value}`)
     .then( response => response.data)
 })
 const editProduct = createAsyncThunk('products/editProduct', ({id, findBy, infoUpdated}) => {
     // console.log(value);
-    return axios.put(`https://don-mai.herokuapp.com/products/update`, {
+    return axios.put(`http://don-mai.herokuapp.com/products/update`, {
         id,
         findBy,
         infoUpdated
     })
     .then( response => response.data)
 })
-const postProducts = createAsyncThunk('products/postProduct', ({products}) => {
-    console.log(products);
-    return axios.post("https://don-mai.herokuapp.com/products/upload"), {
-        
-        products: [...products]
-        
-    }
+const createProduct = createAsyncThunk('products/createProduct', (products) => {
+    // console.log(value);
+    return axios.post(`http://don-mai.herokuapp.com/products/upload`, {
+        productos: [...products]
+    })
     .then( response => response.data)
-    
 })
 export const { 
     nextProduct, 
@@ -194,9 +191,10 @@ export const {
     counterIncrement,
     setCounter,
     addProductToShoppingCart
+
 } = productSlicetest.actions
 export const productSliceReducer = productSlicetest.reducer
 export const fetchAllProducts = fetchProducts
 export const fetchOneProduct = fetchProduct
 export const editOneProduct = editProduct
-export const postProduct = postProducts
+export const postProduct = createProduct
