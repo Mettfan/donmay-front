@@ -15,7 +15,7 @@ export const productSlice = createSlice({
 export const { setProductList } = productSlice.actions
 export default productSlice.reducer
 export const fetchAllProducts = ( ) => (dispatch) => {
-     axios.get('http://don-mai.herokuapp.com/products').then(
+     axios.get('https://don-mai.herokuapp.com/products').then(
         (response) => {
             console.log(response);
             console.log('passed');
