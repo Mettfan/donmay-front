@@ -97,21 +97,21 @@ export const sucursalSlice = createSlice({
 })
 
 const createSucursal = createAsyncThunk('sucursales/createSucursal', ({sucursal}) => {
-    return axios.post('http://don-mai.herokuapp.com/sucursales', {sucursal: sucursal})
+    return axios.post('https://don-mai.herokuapp.com/sucursales', {sucursal: sucursal})
     .then( response => response.data.db)
 })
 const associateSucursalToUser = createAsyncThunk('sucursales/associateSucursalToUser', ({userId, sucursalId}) => {
-    return axios.post('http://don-mai.herokuapp.com/sucursales/add/user', {userId, sucursalId})
+    return axios.post('https://don-mai.herokuapp.com/sucursales/add/user', {userId, sucursalId})
     .then( response => response.data)
 })
 // const fetchSucursal = createAsyncThunk('users/fetchSucursal', ({filter, value, password}) => {
 //     console.log(value);
-//     return axios.get(`http://localhost:3001/sucursales/?filter=${filter}&value=${value}&password=${password}`)
+//     return axios.get(`https://localhost:3001/sucursales/?filter=${filter}&value=${value}&password=${password}`)
 //     .then( response => response.data)
 // })
 // const editProduct = createAsyncThunk('products/editProduct', ({id, findBy, infoUpdated}) => {
 //     // console.log(value);
-//     return axios.put(`http://localhost:3001/products/update`, {
+//     return axios.put(`https://localhost:3001/products/update`, {
 //         id,
 //         findBy,
 //         infoUpdated

@@ -82,17 +82,17 @@ export const userSlice = createSlice({
 })
 
 const createUser = createAsyncThunk('user/createUser', ({user}) => {
-    return axios.post('http://don-mai.herokuapp.com/users', {user: user})
+    return axios.post('https://don-mai.herokuapp.com/users', {user: user})
     .then( response => response.data.db)
 })
 const fetchUser = createAsyncThunk('users/fetchUser', ({filter, value, password}) => {
     console.log(value);
-    return axios.get(`http://don-mai.herokuapp.com/users/?filter=${filter}&value=${value}&password=${password}`)
+    return axios.get(`https://don-mai.herokuapp.com/users/?filter=${filter}&value=${value}&password=${password}`)
     .then( response => response.data)
 })
 const editProduct = createAsyncThunk('products/editProduct', ({id, findBy, infoUpdated}) => {
     // console.log(value);
-    return axios.put(`http://don-mai.herokuapp.com/products/update`, {
+    return axios.put(`https://don-mai.herokuapp.com/products/update`, {
         id,
         findBy,
         infoUpdated
