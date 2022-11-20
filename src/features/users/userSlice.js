@@ -106,4 +106,5 @@ export const {
 // export const productSliceReducer = productSlicetest.reducer
 export const createOneUser = createUser
 export const fetchOneUser = fetchUser //
-export const editOneProduct = editProduct
+export const editOneUser = editUser
+
