@@ -116,7 +116,7 @@ export const productSlicetest = createSlice({
         })
         builder.addCase(fetchProduct.fulfilled, (state, action) => {
             state.loading = false
-            state.selectedProduct = {...action.payload, selected: false, quantity: 1}
+            state.selectedProduct = {...action.payload, selected: false}
             state.error = ''
         })
         builder.addCase(fetchProduct.rejected, (state, action) => {
@@ -166,22 +166,36 @@ export const productSlicetest = createSlice({
             state.error = action.error.message
             state.response = null
         })
+                
+        builder.addCase(addProductStock.pending, state => {
+            state.loading = true
+        })
+        builder.addCase(addProductStock.fulfilled, (state, action) => {
+            state.loading = false
+            state.response = action.payload
+            state.error = ''
+        })
+        builder.addCase(addProductStock.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.error.message
+            state.response = null
+        })
 
     }
 })
 
 const fetchProducts = createAsyncThunk('products/fetchProducts', () => {
-    return axios.get('https://don-mai.herokuapp.com/products')
+    return axios.get('https://don-may.herokuapp.com/products')
     .then( response => response.data.db)
 })
 const fetchProduct = createAsyncThunk('products/fetchProduct', ({filter, value}) => {
     console.log(value);
-    return axios.get(`https://don-mai.herokuapp.com/products/?filter=${filter}&value=${value}`)
+    return axios.get(`https://don-may.herokuapp.com/products/?filter=${filter}&value=${value}`)
     .then( response => response.data)
 })
 const editProduct = createAsyncThunk('products/editProduct', ({id, findBy, infoUpdated}) => {
     // console.log(value);
-    return axios.put(`https://don-mai.herokuapp.com/products/update`, {
+    return axios.put(`https://don-may.herokuapp.com/products/update`, {
         id,
         findBy,
         infoUpdated
@@ -190,16 +204,23 @@ const editProduct = createAsyncThunk('products/editProduct', ({id, findBy, infoU
 })
 const createProduct = createAsyncThunk('products/createProduct', (products) => {
     // console.log(value);
-    return axios.post(`https://don-mai.herokuapp.com/products/upload`, {
+    return axios.post(`https://don-may.herokuapp.com/products/upload`, {
         productos: [...products]
     })
     .then( response => response.data)
 })
-
 const deleteProduct = createAsyncThunk('products/deleteProduct', (id) => {
     // console.log(value);
-    return axios.post(`https://don-mai.herokuapp.com/products/delete`, {
+    return axios.post(`https://don-may.herokuapp.com/products/delete`, {
         id,
+    })
+    .then( response => response.data)
+})
+const addProductStock = createAsyncThunk('products/addProductStock', ({productBarcode, quantity}) => {
+    console.log(productBarcode);
+    return axios.put(`https://don-may.herokuapp.com/add/product/stock`, {
+        productBarcode,
+        quantity: Number(quantity)
     })
     .then( response => response.data)
 })
@@ -220,3 +241,4 @@ export const fetchOneProduct = fetchProduct
 export const editOneProduct = editProduct
 export const postProduct = createProduct
 export const eraseProduct = deleteProduct
+export const addProductToStock = addProductStock
