@@ -266,11 +266,11 @@ const addProductStock = createAsyncThunk('products/addProductStock', ({productBa
     .then( response => response.data)
 })
 const fetchTotalInvest = createAsyncThunk('products/fetchTotalInvest', (investType) => {
-    return axios.get(`http://localhost:3001/product/invest/?investType=${investType}`)
+    return axios.get(`https://don-may.herokuapp.com/product/invest/?investType=${investType}`)
     .then( response => response.data)
 })
 const decreaseStock = createAsyncThunk('products/sellProducts', ({products}) => {
-    return axios.post(`http://localhost:3001/product/sell`, {
+    return axios.post(`https://don-may.herokuapp.com/product/sell`, {
         productos: [...products.map(product => {
             return { ...product,
                 quantity: product.quantity + 1
