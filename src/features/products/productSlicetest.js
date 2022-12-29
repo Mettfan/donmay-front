@@ -12,10 +12,23 @@ export const productSlicetest = createSlice({
         shoppingCart:[],
         counterId: 0,
         response: '',
-        error: ''
+        error: '',
+        totalInvest: null,
+        modalShown: false,
+        payment: null
     },
     reducers: {
         
+        setPayment: (state, action) => {
+            state.payment = action.payload
+            console.log(state.payment);
+        },
+        showModal: (state, action) => {
+            state.modalShown = true
+        },
+        hideModal: (state, action) => {
+            state.modalShown = false
+        },
         setCounter: (state, action) => {
             state.counterId = action.payload
         },
