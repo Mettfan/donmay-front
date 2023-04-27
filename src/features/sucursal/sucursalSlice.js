@@ -97,21 +97,21 @@ export const sucursalSlice = createSlice({
 })
 
 const createSucursal = createAsyncThunk('sucursales/createSucursal', ({sucursal}) => {
-    return axios.post('https://don-may.herokuapp.com/sucursales', {sucursal: sucursal})
+    return axios.post('https://branquice.onrender.com/sucursales', {sucursal: sucursal})
     .then( response => response.data.db)
 })
 const associateSucursalToUser = createAsyncThunk('sucursales/associateSucursalToUser', ({userId, sucursalId}) => {
-    return axios.post('https://don-may.herokuapp.com/sucursales/add/user', {userId, sucursalId})
+    return axios.post('https://branquice.onrender.com/sucursales/add/user', {userId, sucursalId})
     .then( response => response.data)
 })
 // const fetchSucursal = createAsyncThunk('users/fetchSucursal', ({filter, value, password}) => {
 //     console.log(value);
-//     return axios.get(`https://localhost:3001/sucursales/?filter=${filter}&value=${value}&password=${password}`)
+//     return axios.get(`https://branquice.onrender.com/sucursales/?filter=${filter}&value=${value}&password=${password}`)
 //     .then( response => response.data)
 // })
 // const editProduct = createAsyncThunk('products/editProduct', ({id, findBy, infoUpdated}) => {
 //     // console.log(value);
-//     return axios.put(`https://localhost:3001/products/update`, {
+//     return axios.put(`https://branquice.onrender.com/products/update`, {
 //         id,
 //         findBy,
 //         infoUpdated

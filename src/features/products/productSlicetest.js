@@ -181,7 +181,7 @@ export const productSlicetest = createSlice({
             state.error = action.error.message
             state.response = null
         })
-                
+        
         builder.addCase(addProductStock.pending, state => {
             state.loading = true
         })
@@ -195,7 +195,7 @@ export const productSlicetest = createSlice({
             state.error = action.error.message
             state.response = null
         })
-
+        
         builder.addCase(fetchTotalInvest.pending, state => {
             state.loading = true
         })
@@ -223,7 +223,7 @@ export const productSlicetest = createSlice({
             state.error = action.error.message
             state.response = null
         })
-
+        /// Here starts Ticket case
         builder.addCase(makeTicket.pending, state => {
             state.loading = true
         })
@@ -265,22 +265,36 @@ export const productSlicetest = createSlice({
             state.error = action.error.message
             state.response = null
         })
-
+        
+        builder.addCase(deleteTicket.pending, state => {
+            state.loading = true
+        })
+        builder.addCase(deleteTicket.fulfilled, (state, action) => {
+            state.loading = false
+            state.ticket = action.payload
+            state.error = ''
+        })
+        builder.addCase(deleteTicket.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.error.message
+            state.response = null
+        })
+    
     }
 })
 
 const fetchProducts = createAsyncThunk('products/fetchProducts', () => {
-    return axios.get('https://don-may.herokuapp.com/products')
+    return axios.get('https://branquice.onrender.com/products')
     .then( response => response.data.db)
 })
 const fetchProduct = createAsyncThunk('products/fetchProduct', ({filter, value}) => {
     console.log(value);
-    return axios.get(`https://don-may.herokuapp.com/products/?filter=${filter}&value=${value}`)
+    return axios.get(`https://branquice.onrender.com/products/?filter=${filter}&value=${value}`)
     .then( response => response.data)
 })
 const editProduct = createAsyncThunk('products/editProduct', ({id, findBy, infoUpdated}) => {
     // console.log(value);
-    return axios.put(`https://don-may.herokuapp.com/products/update`, {
+    return axios.put(`https://branquice.onrender.com/products/update`, {
         id,
         findBy,
         infoUpdated
@@ -289,32 +303,32 @@ const editProduct = createAsyncThunk('products/editProduct', ({id, findBy, infoU
 })
 const createProduct = createAsyncThunk('products/createProduct', (products) => {
     // console.log(value);
-    return axios.post(`https://don-may.herokuapp.com/products/upload`, {
+    return axios.post(`https://branquice.onrender.com/products/upload`, {
         productos: [...products]
     })
     .then( response => response.data)
 })
 const deleteProduct = createAsyncThunk('products/deleteProduct', (id) => {
     // console.log(value);
-    return axios.post(`https://don-may.herokuapp.com/products/delete`, {
+    return axios.post(`https://branquice.onrender.com/products/delete`, {
         id,
     })
     .then( response => response.data)
 })
 const addProductStock = createAsyncThunk('products/addProductStock', ({productBarcode, quantity}) => {
     console.log(productBarcode);
-    return axios.put(`https://don-may.herokuapp.com/add/product/stock`, {
+    return axios.put(`https://branquice.onrender.com/add/product/stock`, {
         productBarcode,
         quantity: Number(quantity)
     })
     .then( response => response.data)
 })
 const fetchTotalInvest = createAsyncThunk('products/fetchTotalInvest', (investType) => {
-    return axios.get(`https://don-may.herokuapp.com/product/invest/?investType=${investType}`)
+    return axios.get(`https://branquice.onrender.com/product/invest/?investType=${investType}`)
     .then( response => response.data)
 })
 const decreaseStock = createAsyncThunk('products/sellProducts', ({products}) => {
-    return axios.post(`https://don-may.herokuapp.com/product/sell`, {
+    return axios.post(`https://branquice.onrender.com/product/sell`, {
         productos: [...products.map(product => {
             return { ...product,
                 quantity: product.quantity
@@ -323,27 +337,35 @@ const decreaseStock = createAsyncThunk('products/sellProducts', ({products}) => 
     })
     .then( response => response.data)
 })
-const makeTicket = createAsyncThunk('products/ticketProducts', ({products, total, user, client, description }) => {
-    console.log(products, total, user, client, description);
-    return axios.post(`https://don-may.herokuapp.com/Tickets`, {
+const makeTicket = createAsyncThunk('products/ticketProducts', ({products, total, user, client, description, createdAt }) => {
+    console.log(products, total, user, client, description, createdAt);
+    return axios.post(`https://branquice.onrender.com/Tickets`, {
         products,
         total,
         user,
         client,
-        description
+        description,
+        createdAt
 
     })
     .then( response => response.data)
 })
 const getTickets = createAsyncThunk('products/getTickets', () => {
-    return axios.get(`https://don-may.herokuapp.com/Tickets`)
+    return axios.get(`https://branquice.onrender.com/Tickets`)
     .then( response => response.data)
 })
 const getTicket = createAsyncThunk('products/getTicket', (id) => {
-    return axios.get(`https://don-may.herokuapp.com/Tickets/?id=${id}`)
+    return axios.get(`https://branquice.onrender.com/Tickets/?id=${id}`)
     .then( response => response.data)
 })
-export const { 
+const deleteTicket = createAsyncThunk('products/deleteTicket', (id, user) => {
+    return axios.post(`https://branquice.onrender.com/Ticket/delete`, {
+        id,
+        user
+    })
+    .then( response => response.data)
+})
+export const {
     setPayment,
     showModal,
     hideModal, 
@@ -354,7 +376,7 @@ export const {
     counterDecrement, 
     counterIncrement,
     setCounter,
-    addProductToShoppingCart
+    addProductToShoppingCart,
 
 } = productSlicetest.actions
 export const productSliceReducer = productSlicetest.reducer
@@ -371,3 +393,4 @@ export const killModal = hideModal
 export const postTicket = makeTicket
 export const fetchTickets = getTickets
 export const getTicketById = getTicket
+export const destroyTicket = deleteTicket

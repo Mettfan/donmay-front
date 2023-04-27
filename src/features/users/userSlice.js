@@ -82,17 +82,17 @@ export const userSlice = createSlice({
 })
 
 const createUser = createAsyncThunk('user/createUser', ({user}) => {
-    return axios.post('https://don-may.herokuapp.com/users', {user: user})
+    return axios.post('https://branquice.onrender.com/users', {user: user})
     .then( response => response.data.db)
 })
 const fetchUser = createAsyncThunk('users/fetchUser', ({filter, value, password}) => {
     console.log(value);
-    return axios.get(`https://don-may.herokuapp.com/users/?filter=${filter}&value=${value}&password=${password}`)
+    return axios.get(`https://branquice.onrender.com/users/?filter=${filter}&value=${value}&password=${password}`)
     .then( response => response.data)
 })
 const editUser = createAsyncThunk('products/editUser', ({id, findBy, infoUpdated}) => {
     // console.log(value);
-    return axios.put(`https://don-may.herokuapp.com/users`, {
+    return axios.put(`https://branquice.onrender.com/users`, {
         id,
         findBy,
         infoUpdated
@@ -107,4 +107,3 @@ export const {
 export const createOneUser = createUser
 export const fetchOneUser = fetchUser //
 export const editOneUser = editUser
-

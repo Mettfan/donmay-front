@@ -10,7 +10,7 @@ export  const ERROR = 'ERROR'
 let cookie  = new Cookies()
 export  const addProducts = ( products ) => async ( dispatch ) => {
 // let cookie = new Cookies()
-    await axios.post('https://don-mai.herokuapp.com/products/upload', { productos: products}).then(
+    await axios.post('https://branquice.onrender.com/products/upload', { productos: products}).then(
         (response) => {
             console.log(response);
             console.log('passed');
@@ -31,7 +31,7 @@ export  const addProducts = ( products ) => async ( dispatch ) => {
 }
 export  const getProducts = (  ) => async ( dispatch ) => {
 // let cookie = new Cookies()
-    await axios.get('http://don-mai.herokuapp.com/:3001/products').then(
+    await axios.get('https://branquice.onrender.com/products').then(
         (response) => {
             console.log(response);
             console.log('passed');
@@ -52,7 +52,7 @@ export  const getProducts = (  ) => async ( dispatch ) => {
 }
 export  const getProduct = ( id ) => async ( dispatch ) => {
 // let cookie = new Cookies()
-    await axios.get(`http://don-mai.herokuapp.com/:3001/products/?id=${id}`).then(
+    await axios.get(`https://branquice.onrender.com/products/?id=${id}`).then(
         (response) => {
             // cookie.set('productSelected', response.data)
             console.log(response);
@@ -74,7 +74,7 @@ export  const getProduct = ( id ) => async ( dispatch ) => {
 }
 export  const getProductByBarcode = ( codigo ) => async ( dispatch ) => {
 // let cookie = new Cookies()
-    await axios.get(`http://don-mai.herokuapp.com/:3001/products/?Código=${codigo}`).then(
+    await axios.get(`https://branquice.onrender.com/products/?Código=${codigo}`).then(
         (response) => {
             // cookie.set('productSelected', response.data)
             console.log(response);
