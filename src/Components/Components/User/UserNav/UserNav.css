@@ -1,0 +1,62 @@
+.userNavThumb{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+    color: white;
+    position: relative;
+}
+.userNavThumb:hover{
+    animation-name: scalingup;
+    /* animation-timing-function: linear; */
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+    color: black;
+    background-color: #FFD449;
+    
+}
+.userNavThumb:not(:hover){
+    animation-name: scalingdown;
+    /* animation-timing-function: linear; */
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+    
+}
+.userNavImage{
+    height: 30px;
+    
+}
+@keyframes scalingup {
+
+    0%{
+        top: 0px;
+        
+    }
+    50%{
+        right: 0px;
+    }
+    100%{
+        top: 10px;
+        right: 10px;
+        
+    }
+    
+}
+@keyframes scalingdown {
+
+    0%{
+        top: 10px;
+        right: 10px;
+    }
+    50%{
+        right: 0px;
+    }
+    100%{
+        top: 0px;
+        
+        
+    }
+    
+}
