@@ -45,6 +45,7 @@ export const readExcel = (file) => {
 export default function Convert () {
     let pdf = React.createRef()
     let dispatch = useDispatch()
+    let user = useSelector(state => state.user) || cookie.get('user')
     let selectedFile;
     let [ state, setState ] = useState({
         productos: null,
@@ -89,7 +90,7 @@ export default function Convert () {
     }
     function uploadProducts(){
         if(productos){
-            dispatch(postProduct(productos))
+            dispatch(postProduct({products: productos, userId: user?.id}))
             console.log(status);
             
         }
