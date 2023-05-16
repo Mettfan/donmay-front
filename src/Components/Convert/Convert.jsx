@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { PDFExport } from "@progress/kendo-react-pdf";
 import { postProduct } from "../../features/products/productSlicetest";
 import CreateProduct from "../CreateProduct/CreateProduct";
+import Cookies from "universal-cookie";
 // import { JsonToExcel } from "react-json-to-excel"
 // import {fs} from 'fs';
 // import { Readable } from 'stream';
@@ -45,6 +46,7 @@ export const readExcel = (file) => {
 export default function Convert () {
     let pdf = React.createRef()
     let dispatch = useDispatch()
+    let cookie = new Cookies()
     let user = useSelector(state => state.user) || cookie.get('user')
     let selectedFile;
     let [ state, setState ] = useState({
