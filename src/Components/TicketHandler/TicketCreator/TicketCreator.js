@@ -129,9 +129,15 @@ function TicketCreator(props) {
             return {...product, quantity: fixedQuantity}
 
         })
-        dispatch(sellProducts({products: ticket}))
-        dispatch(postTicket({products: ticketProducts, total: Number(state.total), user: user?.email, client: null, description: String(type), createdAt: JSON.stringify(date) }))
-        console.log('posteado' , ticket );
+        //Creamos una funcion asincrónica para que se puedan ejecutar de manera consecutiva los siguientes dispatch
+        let promise = new Promise((resolve ) => {
+            dispatch(sellProducts({products: ticket}))
+            resolve('SOLD')
+        })
+        promise.then((result) => {
+            dispatch(postTicket({products: ticketProducts, total: Number(state.total), user: user?.email, client: null, description: String(type), createdAt: JSON.stringify(date) }))
+            console.log('posteado' , ticket );
+        })
     }
     function handleOnTicketSubmit(e){
         e.preventDefault && e.preventDefault()
