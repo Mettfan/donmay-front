@@ -2,7 +2,7 @@ import { color } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'universal-cookie';
-import { addProductToGlobalTicket, fetchOneProduct, postTicket, removeProductFromGlobalTicket, sellProducts } from '../../../features/products/productSlicetest';
+import { addProductToGlobalTicket, fetchOneProduct, fetchTickets, postTicket, removeProductFromGlobalTicket, sellProducts } from '../../../features/products/productSlicetest';
 import CreateProduct from '../../CreateProduct/CreateProduct';
 import './TicketCreator.css'
 function TicketCreator(props) {
@@ -141,7 +141,7 @@ function TicketCreator(props) {
     }
     function handleOnTicketSubmit(e){
         e.preventDefault && e.preventDefault()
-        window.location.reload()
+        dispatch(fetchTickets())
     }
     function handleSwitch(){
         let isSwitchOn = document.getElementById('switch').checked
