@@ -137,12 +137,13 @@ function TicketCreator(props) {
         await promise.then((result) => {
             dispatch(postTicket({products: ticketProducts, total: Number(state.total), user: user?.email, client: null, description: String(type), createdAt: JSON.stringify(date) }))
             console.log('posteado' , ticket );
+            return 'posted'
+        }).then((result) => {
+            dispatch(fetchTickets())
+            console.log(result);
         })
     }
-    function handleOnTicketSubmit(e){
-        e.preventDefault && e.preventDefault()
-        dispatch(fetchTickets())
-    }
+
     function handleSwitch(){
         let isSwitchOn = document.getElementById('switch').checked
         setState({...state, ticketType: isSwitchOn ? 'entry' : 'out'})
@@ -254,7 +255,7 @@ function TicketCreator(props) {
                 <label className='formTicketCreatorInputProduct'>{ state.inputSearch && ('Nombre: ' + state.inputSearch) || 'Ingrese Código o Nombre'}</label>
                 <input onKeyDown={(e) => {handleKeyDown(e)}} autoComplete={'off'} id='inputSearch' name='inputSearch' type={'text'} placeholder='Nombre ó Código' onChange={(e) => {handleOnChange(e)}}></input>
             </form>
-            <form onSubmit={(e) => {handleOnTicketSubmit(e)} }>
+            <form>
                 <label className='formTicketCreatorName'>{JSON.stringify(user?.name)}</label>
                 {ticketProducts?.length && ticketProducts?.map( product => productCard(product) )?.reverse() || 'Agregue algunos productos!'}
                 <div>
