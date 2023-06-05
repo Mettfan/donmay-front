@@ -121,7 +121,7 @@ function TicketCreator(props) {
         
     
       }
-    function submitTicket (type){
+    async function submitTicket (type){
         // Suma o resta de acuerdo a type cada producto y manda su total
         let ticket = ticketProducts.map(product => {
             let fixedQuantity = type === 'entry' ? (Number(product?.quantity) * -1) : product?.quantity;
@@ -134,7 +134,7 @@ function TicketCreator(props) {
             dispatch(sellProducts({products: ticket}))
             resolve('SOLD')
         })
-        promise.then((result) => {
+        await promise.then((result) => {
             dispatch(postTicket({products: ticketProducts, total: Number(state.total), user: user?.email, client: null, description: String(type), createdAt: JSON.stringify(date) }))
             console.log('posteado' , ticket );
         })
