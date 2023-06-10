@@ -73,7 +73,10 @@ function Tickets() {
                 </div>
         </>)
     }
-    let currentTickets = () => tickets?.filter(ticket => Number(ticket["createdAt"].split('T')[0].split('-')[1]) === ticketDate.getMonth() + 1 )?.filter(ticket => Number(ticket["createdAt"].split('T')[0].split('-')[2]) === ticketDate.getDate())
+    let currentTickets = () => tickets?.filter(ticket => Number(ticket["createdAt"].split('T')[0].split('-')[1]) === ticketDate.getMonth() + 1 )?.filter(ticket => {
+        let localTicketDate = new Date(ticket['createdAt'].slice(0, -1))
+        return localTicketDate.getDate() === ticketDate.getDate()
+    })
     let currentTicketsCards = () => {
         return currentTickets()?.map((ticket) => {
                         
@@ -92,6 +95,17 @@ function Tickets() {
             setTicketsUpload(result)
         })
     }
+    function calculateDaily(type){
+        //Esta funcion calcula el ingreso o egreso diario de acuerdo a los tickets del dia
+        //Está 'entry' o 'out' para indicar qué se requiere devolver (se especifíca en type)
+        let accumulator = 0
+        currentTickets()?.forEach(ticket => {
+            if (ticket?.description === type){
+                accumulator+= Number(ticket.Total)
+            }
+        })
+        return accumulator
+    }
     return ( <>
         {/* {ticketDate.getMonth()+1} */}
         {/* {JSON.stringify(tickets)} */}
@@ -103,6 +117,12 @@ function Tickets() {
                     <div className='calendarTicket'>
                         {/* {JSON.stringify(ticketDate)} */}
                         <Calendar onChange={setTicketDate} value={ticketDate} defaultView={'month'} />
+                        <div className='entryTotal'>
+                            {currentTickets()?.length > 0 && calculateDaily('entry')}
+                        </div>
+                        <div className='outTotal'>
+                            {currentTickets()?.length > 0 && calculateDaily('out')}
+                        </div>
                         {tickets?.length && <button className='ticketDownloadButton' onClick={() => downloadExcel(currentTickets())} ><DownloadIcon></DownloadIcon></button>}
                         {/* EXCEL UPLOAD TICKETS PROTOTYPE */}
                         {/* <input onChange={(e) => fileOnChange(e)} type="file" id = 'hoja' accept= ".xls, .xlsx"></input>
