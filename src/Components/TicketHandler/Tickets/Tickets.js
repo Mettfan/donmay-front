@@ -133,6 +133,18 @@ function Tickets() {
                     <div className='calendarTicket'>
                         {/* {JSON.stringify(ticketDate)} */}
                         <Calendar onChange={setTicketDate} value={ticketDate} defaultView={'month'} />
+                        {tickets?.length && <button className='ticketDownloadButton' onClick={() => downloadExcel(currentTickets())} ><DownloadIcon></DownloadIcon></button>}
+                        {/* EXCEL UPLOAD TICKETS PROTOTYPE */}
+                        {/* <input onChange={(e) => fileOnChange(e)} type="file" id = 'hoja' accept= ".xls, .xlsx"></input>
+                        <div>
+                            <h3>Tickets a Subir: </h3>
+                            {ticketsUpload?.map((ticket) => {
+                                return (ticketCard(ticket))
+                            })}
+                        </div> */}
+                        <div>
+                            <TicketCreator></TicketCreator>
+                        </div>
                         {currentTickets()?.length > 0 && <div>
                             <div className='entryTotal'>
                                 {calculateDaily('entry')}
@@ -163,17 +175,10 @@ function Tickets() {
                                 </div>
                             </div>
                         </div>}
-                        {tickets?.length && <button className='ticketDownloadButton' onClick={() => downloadExcel(currentTickets())} ><DownloadIcon></DownloadIcon></button>}
-                        {/* EXCEL UPLOAD TICKETS PROTOTYPE */}
-                        {/* <input onChange={(e) => fileOnChange(e)} type="file" id = 'hoja' accept= ".xls, .xlsx"></input>
                         <div>
-                            <h3>Tickets a Subir: </h3>
-                            {ticketsUpload?.map((ticket) => {
-                                return (ticketCard(ticket))
-                            })}
-                        </div> */}
-                        <div>
-                            <TicketCreator></TicketCreator>
+                            <h3>Day Balance</h3>
+                            <h4>{calculateDaily('out') - calculateDaily('entry') }</h4>
+                            
                         </div>
                     </div>
                 </div>
