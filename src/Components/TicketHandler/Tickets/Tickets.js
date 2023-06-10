@@ -74,8 +74,10 @@ function Tickets() {
         </>)
     }
     let currentTickets = () => tickets?.filter(ticket => Number(ticket["createdAt"].split('T')[0].split('-')[1]) === ticketDate.getMonth() + 1 )?.filter(ticket => {
-        let localTicketDate = new Date(ticket['createdAt'].slice(0, -1))
-        return localTicketDate.getDate() === ticketDate.getDate()
+        let currentTicketDate = new Date(ticket['createdAt'])
+        console.log(currentTicketDate.toLocaleString()[0]);
+        console.log(ticketDate.getDate());
+        return Number(currentTicketDate.toLocaleString()[0]) === ticketDate.getDate()
     })
     let currentTicketsCards = () => {
         return currentTickets()?.map((ticket) => {
@@ -106,6 +108,20 @@ function Tickets() {
         })
         return accumulator
     }
+    function calculateMeanTicket(type){
+        // Calcula el costo promedio de ticket, ya sea de 'entry' o de 'out'
+        //Devuelve una lista de dos elementos: [mean, ticketCounter]
+        let meanTicket = 0
+        let ticketCounter = 0
+        currentTickets()?.forEach(ticket => {
+            if(ticket.description === type){
+                meanTicket += Number(ticket.Total)
+                ticketCounter += 1
+            }
+        })
+        meanTicket = Math.floor(meanTicket/ticketCounter)
+        return [meanTicket, ticketCounter]
+    }
     return ( <>
         {/* {ticketDate.getMonth()+1} */}
         {/* {JSON.stringify(tickets)} */}
@@ -117,12 +133,36 @@ function Tickets() {
                     <div className='calendarTicket'>
                         {/* {JSON.stringify(ticketDate)} */}
                         <Calendar onChange={setTicketDate} value={ticketDate} defaultView={'month'} />
-                        <div className='entryTotal'>
-                            {currentTickets()?.length > 0 && calculateDaily('entry')}
-                        </div>
-                        <div className='outTotal'>
-                            {currentTickets()?.length > 0 && calculateDaily('out')}
-                        </div>
+                        {currentTickets()?.length > 0 && <div>
+                            <div className='entryTotal'>
+                                {calculateDaily('entry')}
+                            </div>
+                            <div className='meanEntry'>
+                                <div >
+                                    {String(calculateMeanTicket('entry')[1]) }
+                                </div>
+                                <div>
+                                    {'entry tickets con promedio de: '}
+                                </div>
+                                <div>
+                                    {"$" + String(calculateMeanTicket('entry')[0]) || 'No hay Salida de Dinero'}
+                                </div>
+                            </div>
+                            <div className='outTotal'>
+                                {calculateDaily('out')}
+                            </div>
+                            <div className='meanOut'>
+                                <div>
+                                    {String(calculateMeanTicket('out')[1])}                                    
+                                </div>
+                                <div>
+                                    {'out tickets con promedio de: '}
+                                </div>
+                                <div>
+                                    {"$" + String(calculateMeanTicket('out')[0]) || 'No hay Entrada de Dinero'}
+                                </div>
+                            </div>
+                        </div>}
                         {tickets?.length && <button className='ticketDownloadButton' onClick={() => downloadExcel(currentTickets())} ><DownloadIcon></DownloadIcon></button>}
                         {/* EXCEL UPLOAD TICKETS PROTOTYPE */}
                         {/* <input onChange={(e) => fileOnChange(e)} type="file" id = 'hoja' accept= ".xls, .xlsx"></input>
