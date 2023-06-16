@@ -75,7 +75,7 @@ export const productSlicetest = createSlice({
                 
             }
             else{
-                state.ticketProducts = [...state.ticketProducts, {...action.payload, quantity: 1}]
+                state.ticketProducts = [...state.ticketProducts, {...action.payload, quantity: (action.payload.adder > 0 ? action.payload.adder : 1 )}]
                 console.log('Product added: ' + JSON.stringify(action.payload));
 
             }
