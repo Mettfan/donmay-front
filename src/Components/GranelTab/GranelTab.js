@@ -16,21 +16,24 @@ function GranelTab({product, weightFactor, closeCallback}) {
         document.getElementById('granelInput')?.focus()
     }, [])
     useEffect(() => {
-        let price = product['P. Venta']
-        let userInput = Number(state.userInput)
-        let formattedPrice = Number(price[0]  !== '$' ? Number(price) : Number(price.slice(1)) )
-        if(state.granelType === 'byPrice'){
-            console.log('price: ' + price);
-            console.log('userInput: ' + userInput);
-            console.log('formattedPrice: ' + formattedPrice);
-            console.log('weightFactor: ' + weightFactor);
-            
-            setState({...state, productQuantity: Math.round(userInput * (Number(weightFactor))/formattedPrice), userPayment: 0})
-            
-        }
-        else{
-            setState({...state, userPayment: Math.round((userInput * formattedPrice) / Number(weightFactor)), productQuantity: 0})
-            
+        if(product){
+            let price = product &&  product['P. Venta']
+            let userInput = Number(state.userInput)
+            let formattedPrice = Number(price[0]  !== '$' ? Number(price) : Number(price.slice(1)) )
+            if(state.granelType === 'byPrice'){
+                console.log('price: ' + price);
+                console.log('userInput: ' + userInput);
+                console.log('formattedPrice: ' + formattedPrice);
+                console.log('weightFactor: ' + weightFactor);
+                
+                setState({...state, productQuantity: Math.round(userInput * (Number(weightFactor))/formattedPrice), userPayment: 0})
+                
+            }
+            else{
+                setState({...state, userPayment: Math.round((userInput * formattedPrice) / Number(weightFactor)), productQuantity: 0})
+                
+            }
+
         }
 
     }, [state.userInput, state.granelType] )
@@ -70,7 +73,7 @@ function GranelTab({product, weightFactor, closeCallback}) {
     
         {state.granelShown && <div className='granelAdderContainer'>
             <h1>GRANEL ADDER</h1>
-            <h1>{product['Código']}</h1>
+            <h1>{product && product['Código']}</h1>
             <button onClick={() => {handleOnTypeChange()}}>{state.granelType === 'byWeight' ? 'Por Gramos' : 'Por Cantidad $' }</button>
             <form onSubmit={(e) => {handleGranelSubmit(e)}}>
                 <div className='granelInputGroup'>

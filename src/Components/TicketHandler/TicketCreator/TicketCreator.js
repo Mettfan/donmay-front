@@ -148,7 +148,9 @@ function TicketCreator(props) {
         
         let matches = allProducts.filter(product => {
           const regex = new RegExp(`^${searchText}`, 'gi')
-          return product['Producto']?.match(regex) || product['Código']?.match(regex) || product['Departamento']?.match(regex) 
+          if(product){
+              return product['Producto']?.match(regex) || product['Código']?.match(regex) || product['Departamento']?.match(regex)
+          }
         })
         if(searchText.length === 0){
           matches = []
@@ -272,13 +274,16 @@ function TicketCreator(props) {
         // selectedProduct && dispatch(addProductToGlobalTicket(selectedProduct))
         if(selectedProduct["Producto"]){
             console.log(selectedProduct);
-            dispatch(addProductToGlobalTicket(selectedProduct))
-            setState({...state, 
-                searchValue: '',
-                matchList: [],
-                inputSearch: ''
-            })
-            document.getElementById('inputSearch').value = ''
+            if(selectedProduct?.Departamento !== 'GRANEL'){
+                dispatch(addProductToGlobalTicket(selectedProduct))
+                setState({...state, 
+                    searchValue: '',
+                    matchList: [],
+                    inputSearch: ''
+                })
+                document.getElementById('inputSearch').value = ''
+
+            }
         }
     }, [selectedProduct])
     return ( <>
