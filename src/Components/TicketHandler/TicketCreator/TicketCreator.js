@@ -36,7 +36,10 @@ function TicketCreator(props) {
     useEffect(() => {
 
         document.getElementById('inputSearch').value = ''
-        document.getElementById('inputSearch').focus()
+        if(!state.granelTab){
+            document.getElementById('inputSearch').focus()
+            
+        }
 
     },[state.granelTab])
     useEffect(() => {
