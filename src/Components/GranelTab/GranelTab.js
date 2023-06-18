@@ -58,6 +58,13 @@ function GranelTab({product, weightFactor, closeCallback}) {
         setState({...state, granelShown: false })
         closeCallback && closeCallback()
     }
+    function closeGranel(e){
+        console.log(e.keyCode)
+        if(e.keyCode === 27){
+            closeCallback()
+
+        }
+    }
     
     return ( <>
     
@@ -68,7 +75,7 @@ function GranelTab({product, weightFactor, closeCallback}) {
             <form onSubmit={(e) => {handleGranelSubmit(e)}}>
                 <div className='granelInputGroup'>
                     {state.granelType === 'byPrice' && '$' }
-                    <input id='granelInput' placeholder={state.granelType === 'byWeight' ? 'gr' : '$' } type='number' onChange={e => handleInputOnChange(e)}></input>
+                    <input id='granelInput' placeholder={state.granelType === 'byWeight' ? 'gr' : '$' } type='number' onChange={e => handleInputOnChange(e)} onKeyDown={(e) => {closeGranel(e)}}></input>
                     {state.granelType === 'byWeight' && 'gr' }
                 </div>
                 <div>

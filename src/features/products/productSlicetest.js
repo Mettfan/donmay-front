@@ -84,15 +84,43 @@ export const productSlicetest = createSlice({
         },
         removeProductFromGlobalTicket: ( state, action) => {
             
+            let foundProduct = state.ticketProducts.find( listedProduct => action.payload.id == listedProduct.id )
+            if (!(foundProduct?.quantity === 0)){
+                if(foundProduct){
+                    console.log('Ya existe');
+                    state.ticketProducts =  state.ticketProducts.map( producto => {
+                            if(action.payload.id == producto.id && producto.quantity > 0){
+                                return {...producto, ['quantity']: producto.quantity - 1 }
+                            }
+                            else{
+                                return producto
+                            }
+                        })
+                    
+                }
+                else{
+    
+                    console.log('Product currently inexistent: ' + JSON.stringify(action.payload));
+    
+                }
+
+            }
+            else{
+                state.ticketProducts = state.ticketProducts.filter(product => product['id'] !== action.payload['id'])
+            }
 
 
-            if(state.ticketProducts.find( listedProduct => action.payload.id == listedProduct.id )){
+        },
+
+        //Next function sets 0 on product quantity at global ticket
+        deleteProductFromGlobalTicket: ( state, action) => {
+            
+            let foundProduct = state.ticketProducts.find( listedProduct => action.payload.id == listedProduct.id )
+            
+            if(foundProduct){
                 console.log('Ya existe');
-                state.ticketProducts =  state.ticketProducts.map( producto => {
-                        if(action.payload.id == producto.id && producto.quantity > 0){
-                            return {...producto, ['quantity']: producto.quantity - 1 }
-                        }
-                        else{
+                state.ticketProducts =  state.ticketProducts.filter( producto => {
+                        if(!(action.payload.id == producto.id)){
                             return producto
                         }
                     })
@@ -104,8 +132,11 @@ export const productSlicetest = createSlice({
 
             }
 
-
         },
+            
+
+
+        
         setProductQuantity: ( state, action) => {
             
 
@@ -461,7 +492,8 @@ export const {
     counterIncrement,
     setCounter,
     addProductToShoppingCart,
-    setProductQuantity
+    setProductQuantity,
+    deleteProductFromGlobalTicket,
 
 } = productSlicetest.actions
 export const productSliceReducer = productSlicetest.reducer
