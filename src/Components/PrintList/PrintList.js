@@ -19,7 +19,7 @@ function PrintList({products}) {
                         <td>{product?.quantity}</td>
                         <td>{product?.Producto}</td>
                         <td></td>
-                        <td>{String(product['P. Venta'].split('$')).split('.')[0]}</td>
+                        <td>{  String(product['P. Venta'][0]) === '$' ? product['P. Venta'].slice(1) : product['P. Venta'] }</td>
                         <td></td>
                         {/* <td>{product['Código']?.slice(-6, -1)}</td> */}
                         
