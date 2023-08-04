@@ -36,7 +36,6 @@ function PrintComponent(props) {
 
             setTimeout(() => {
               resolve('SUMMITED')
-              document.location.reload()
               
             }, 1000);
           
