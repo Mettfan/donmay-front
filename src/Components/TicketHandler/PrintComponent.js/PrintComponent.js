@@ -34,12 +34,15 @@ function PrintComponent(props) {
         let promise = new Promise(( resolve ) => {
             document.getElementById('submitTicket').click()
 
-          resolve('SUMMITED')
+            setTimeout(() => {
+              resolve('SUMMITED')
+              document.location.reload()
+              
+            }, 1000);
           
         })
         promise.then((res) => {
           console.log(res);
-          document.location.reload()
         })
       }
       function handleOnBeforePrint (){
