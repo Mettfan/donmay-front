@@ -28,7 +28,7 @@ function PrintComponent(props) {
           </div>
         );
       });
-      function handleOnAfterPrint (){
+      async function handleOnAfterPrint (){
         console.log('AFTER');
 
         let promise = new Promise(( resolve ) => {
@@ -40,7 +40,7 @@ function PrintComponent(props) {
             }, 1000);
           
         })
-        promise.then((res) => {
+        await promise.then((res) => {
           console.log(res);
         })
       }
