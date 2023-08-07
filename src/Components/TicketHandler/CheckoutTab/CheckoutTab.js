@@ -48,11 +48,11 @@ function CheckoutTab({total, afterCheckoutCallback, closeCallback, Component}) {
                             {'SOBRAN: ' + restante + ' PESOS'}     
                         </div>
                         <div>
-                            {restante > 0 &&<PrintComponent component = {<Component/>} buttonComponent = {<div onClick={() => {afterCheckoutCallback()}} className='paymentButton'>COBRAR</div>}></PrintComponent>}
+                            {restante > 0 &&<PrintComponent component = {<Component/>} afterPrintCallback = {afterCheckoutCallback} buttonComponent = {<div className='paymentButton'>COBRAR</div>}></PrintComponent>}
                         </div>
                     </div>
                 }
-                {(faltante + restante) === 0 && <PrintComponent component = {  <Component/>} buttonComponent = {<div onClick={() => {afterCheckoutCallback()}} className='paymentButton'>COBRAR</div>}></PrintComponent> }
+                {(faltante + restante) === 0 && <PrintComponent component = {  <Component/>} afterPrintCallback = {afterCheckoutCallback} buttonComponent = {<div className='paymentButton'>COBRAR</div>}></PrintComponent> }
                 
             </div>
         </div>    

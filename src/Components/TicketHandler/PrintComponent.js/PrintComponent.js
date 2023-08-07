@@ -32,7 +32,7 @@ function PrintComponent(props) {
         console.log('AFTER');
 
         let promise = new Promise(( resolve ) => {
-            document.getElementById('submitTicket').click()
+            props.afterPrintCallback()
 
             setTimeout(() => {
               resolve('SUMMITED')
