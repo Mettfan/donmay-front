@@ -75,7 +75,7 @@ function PrintComponent(props) {
           </div>
         }
         
-        <button className="printComponentButton" onClick={handlePrint}>{props?.buttonComponent}</button>
+        <button id='printComponent' className="printComponentButton" onClick={handlePrint}>{props?.buttonComponent}</button>
       </div>
     );
 }
