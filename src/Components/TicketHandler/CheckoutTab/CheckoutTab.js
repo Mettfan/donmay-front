@@ -31,7 +31,8 @@ function CheckoutTab({total, afterCheckoutCallback, closeCallback, Component}) {
             closeCallback()
         }
         if(Number(keycode) === 13  ){
-            document.getElementById('printComponent').click()
+            document.getElementById('printComponent').focus()
+
         }
         console.log(keycode);
     }
