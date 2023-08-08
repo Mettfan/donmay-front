@@ -35,6 +35,7 @@ function PrintComponent(props) {
       }
       function handleOnBeforePrint (){
         console.log('BEFORE');
+        props.beforePrintCallback()
       }
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
