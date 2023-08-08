@@ -31,7 +31,7 @@ function PrintComponent(props) {
       async function handleOnAfterPrint (){
         console.log('AFTER');
         props.afterPrintCallback()
-
+        
       }
       function handleOnBeforePrint (){
         console.log('BEFORE');
