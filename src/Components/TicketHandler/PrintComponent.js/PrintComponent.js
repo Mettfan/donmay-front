@@ -30,19 +30,8 @@ function PrintComponent(props) {
       });
       async function handleOnAfterPrint (){
         console.log('AFTER');
+        props.afterPrintCallback()
 
-        let promise = new Promise(( resolve ) => {
-            props.afterPrintCallback()
-
-            setTimeout(() => {
-              resolve('SUMMITED')
-              
-            }, 1000);
-          
-        })
-        await promise.then((res) => {
-          console.log(res);
-        })
       }
       function handleOnBeforePrint (){
         console.log('BEFORE');
