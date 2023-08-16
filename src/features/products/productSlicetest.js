@@ -397,7 +397,7 @@ export const productSlicetest = createSlice({
 })
 
 const fetchProducts = createAsyncThunk('products/fetchProducts', () => {
-    return axios.get('https://branquice.onrender.com//products')
+    return axios.get('https://branquice.onrender.com/products')
     .then( response => response.data.db)
 })
 const fetchProduct = createAsyncThunk('products/fetchProduct', ({filter, value}) => {
