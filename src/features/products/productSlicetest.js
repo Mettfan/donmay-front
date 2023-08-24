@@ -431,12 +431,12 @@ const deleteProduct = createAsyncThunk('products/deleteProduct', (id) => {
     })
     .then( response => response.data)
 })
-const addProductStock = createAsyncThunk('products/addProductStock', ({productBarcode, quantity, userId}) => {
+const addProductStock = createAsyncThunk('products/addProductStock', ({productBarcode, quantity, id}) => {
     console.log(productBarcode);
     return axios.put(`https://branquice.onrender.com/add/product/stock`, {
         productBarcode,
         quantity: Number(quantity),
-        userId: userId
+        id: id
     })
     .then( response => response.data)
 })
