@@ -6,7 +6,7 @@ import './MyProducts.css'
 function MyProducts(props) {
     
     let cookie = new Cookies()
-    let userProducts = useSelector(state => state.products.userProducts)
+    let userProducts = useSelector(state => state?.products?.userProducts)
     let dispatch = useDispatch()
     let user = cookie.get('user')
     let getUserProducts = () => {
@@ -34,12 +34,12 @@ function MyProducts(props) {
         <div>
             {/* <button onClick={() => {getUserProducts()}}>GET USER PRODUCTS</button> */}
             <div className='myProducts'>
-                {userProducts && userProducts?.map(product => {
+                {userProducts && userProducts?.map(product => { 
                     return (<div onClick={() => {selectProduct(product?.id)}} className='productBg' >
                         <div>{product?.Producto}</div>
-                        <div>{product['P. Venta']}</div>
-                        <div>{product['Código']}</div>
-                        <div>{product['quantity']}</div>
+                        <div>{product?.['P. Venta']}</div>
+                        <div>{product?.Código}</div>
+                        <div>{product?.quantity}</div>
                         <button onClick={() => deleteProduct(product['id'], user?.id)}>X</button>
                     </div>)
                 })}
