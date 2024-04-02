@@ -397,19 +397,19 @@ export const productSlicetest = createSlice({
 })
 
 const fetchProducts = createAsyncThunk('products/fetchProducts', () => {
-    return axios.get('http://localhost:3001/products')
+    return axios.get('https://branquice.onrender.com/products')
     .then( response => response.data.db)
 })
 const fetchProduct = createAsyncThunk('products/fetchProduct', ({filter, value, userId}) => {
     console.log(value);
     console.log(userId);
     console.log(filter);
-    return axios.get(`http://localhost:3001/products/?filter=${filter}&value=${value}&userId=${userId  || null}`)
+    return axios.get(`https://branquice.onrender.com/products/?filter=${filter}&value=${value}&userId=${userId  || null}`)
     .then( response => response.data)
 })
 const editProduct = createAsyncThunk('products/editProduct', ({id, findBy, infoUpdated}) => {
     // console.log(value);
-    return axios.put(`http://localhost:3001/products/update`, {
+    return axios.put(`https://branquice.onrender.com/products/update`, {
         id,
         findBy,
         infoUpdated
@@ -418,7 +418,7 @@ const editProduct = createAsyncThunk('products/editProduct', ({id, findBy, infoU
 })
 const createProduct = createAsyncThunk('products/createProduct', ({products, userId}) => {
     // console.log(value);
-    return axios.post(`http://localhost:3001/products/upload`, {
+    return axios.post(`https://branquice.onrender.com/products/upload`, {
         productos: [...products],
         userId: userId || null
     })
@@ -426,14 +426,14 @@ const createProduct = createAsyncThunk('products/createProduct', ({products, use
 })
 const deleteProduct = createAsyncThunk('products/deleteProduct', (id) => {
     // console.log(value);
-    return axios.post(`http://localhost:3001/products/delete`, {
+    return axios.post(`https://branquice.onrender.com/products/delete`, {
         id,
     })
     .then( response => response.data)
 })
 const addProductStock = createAsyncThunk('products/addProductStock', ({productBarcode, quantity, id}) => {
     console.log(productBarcode);
-    return axios.put(`http://localhost:3001/add/product/stock`, {
+    return axios.put(`https://branquice.onrender.com/add/product/stock`, {
         productBarcode,
         quantity: Number(quantity),
         id: id
@@ -441,11 +441,11 @@ const addProductStock = createAsyncThunk('products/addProductStock', ({productBa
     .then( response => response.data)
 })
 const fetchTotalInvest = createAsyncThunk('products/fetchTotalInvest', (investType) => {
-    return axios.get(`http://localhost:3001/product/invest/?investType=${investType}`)
+    return axios.get(`https://branquice.onrender.com/product/invest/?investType=${investType}`)
     .then( response => response.data)
 })
 const decreaseStock = createAsyncThunk('products/sellProducts', ({products}) => {
-    return axios.post(`http://localhost:3001/product/sell`, {
+    return axios.post(`https://branquice.onrender.com/product/sell`, {
         productos: [...products.map(product => {
             return { ...product,
                 quantity: product.quantity
@@ -456,7 +456,7 @@ const decreaseStock = createAsyncThunk('products/sellProducts', ({products}) => 
 })
 const makeTicket = createAsyncThunk('products/ticketProducts', ({products, total, user, client, description, createdAt }) => {
     console.log(products, total, user, client, description, createdAt);
-    return axios.post(`http://localhost:3001/Tickets`, {
+    return axios.post(`https://branquice.onrender.com/Tickets`, {
         products,
         total,
         user,
@@ -468,41 +468,41 @@ const makeTicket = createAsyncThunk('products/ticketProducts', ({products, total
     .then( response => response.data)
 })
 const getTickets = createAsyncThunk('products/getTickets', () => {
-    return axios.get(`http://localhost:3001/Tickets`)
+    return axios.get(`https://branquice.onrender.com/Tickets`)
     .then( response => response.data)
 })
 const getTicket = createAsyncThunk('products/getTicket', (id) => {
-    return axios.get(`http://localhost:3001/Tickets/?id=${id}`)
+    return axios.get(`https://branquice.onrender.com/Tickets/?id=${id}`)
     .then( response => response.data)
 })
 const deleteTicket = createAsyncThunk('products/deleteTicket', (id, user) => {
-    return axios.post(`http://localhost:3001/Ticket/delete`, {
+    return axios.post(`https://branquice.onrender.com/Ticket/delete`, {
         id,
         user
     })
     .then( response => response.data)
 })
 const associateProduct = createAsyncThunk('products/associateProduct', ({userId, productId}) => {
-    return axios.post(`http://localhost:3001/product/add/user`, {
+    return axios.post(`https://branquice.onrender.com/product/add/user`, {
         userId,
         productId
     })
     .then( response => response.data)
 })
 const getUserProducts = createAsyncThunk('products/getUserProducts', ({userId}) => {
-    return axios.get(`http://localhost:3001/product/get/user/?userId=${userId}`)
+    return axios.get(`https://branquice.onrender.com/product/get/user/?userId=${userId}`)
     .then( response => response.data)
 })
 const deleteUserProduct = createAsyncThunk('products/deleteUserProduct', ({userId, productId}) => {
-    return axios.delete(`http://localhost:3001/product/delete/user/?userId=${userId}&productId=${productId}`)
+    return axios.delete(`https://branquice.onrender.com/product/delete/user/?userId=${userId}&productId=${productId}`)
     .then( response => response.data)
 })
 const filterTickets = createAsyncThunk('products/filterTickets', ({filter, value}) => {
-    return axios.get(`http://localhost:3001/Tickets/search/?filter=${filter}&value=${value}`)
+    return axios.get(`https://branquice.onrender.com/Tickets/search/?filter=${filter}&value=${value}`)
     .then( response => response.data)
 })
 const editTicket = createAsyncThunk('Ticket/edit', ( editingTicket ) => {
-    return axios.put(`http://localhost:3001/Ticket/edit`, {
+    return axios.put(`https://branquice.onrender.com/Ticket/edit`, {
         editingTicket
     })
     .then( response => response.data);

@@ -82,16 +82,16 @@ export const userSlice = createSlice({
 })
 
 const createUser = createAsyncThunk('user/createUser', ({user}) => {
-    return axios.post('http://localhost:3001/users', {user: user})
+    return axios.post('https://branquice.onrender.com/users', {user: user})
     .then( response => response.data.db)
 })
 const fetchUser = createAsyncThunk('users/fetchUser', ({filter, value, password}) => {
     console.log(value);
-    return axios.get(`http://localhost:3001/users/?filter=${filter}&value=${value}&password=${password}`)
+    return axios.get(`https://branquice.onrender.com/users/?filter=${filter}&value=${value}&password=${password}`)
     .then( response => response.data)
 })
 const editUser = createAsyncThunk('products/editUser', ({editingUser}) => {
-    return axios.put(`http://localhost:3001/users`, {
+    return axios.put(`https://branquice.onrender.com/users`, {
         editingUser
     })
     .then( response => response.data)
