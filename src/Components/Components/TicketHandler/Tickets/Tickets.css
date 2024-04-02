@@ -28,6 +28,10 @@
     padding: 5px;
     /* display: flex; */
 }
+.ticketTotalPending{
+  background-color: rgb(255, 255, 0);
+  padding: 5px;
+}
 .ticketsContainer{
     border: dotted black 3px ;
     width: 20%;
@@ -86,9 +90,30 @@
 .ticketDownloadButton{
   height: 50px;
   position: fixed;
-  top: 100px;
+  top: 200px;
   right: 0px;
 }
+.entryTotal{
+  background-color: rgb(252, 51, 51) ;
+  padding: 5px;
+}
+.outTotal{
+  background-color: rgb(116, 221, 70);
+  padding: 5px;
+}
+.meanEntry{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  background-color: rgb(214, 99, 99) ;
+}
+.meanOut{
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(178, 241, 150);
+  padding: 5px;
+}
+
 @media (max-width: 1260px ) {
     .ticketsContainer{
         width: 60%;

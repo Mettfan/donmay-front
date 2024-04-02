@@ -22,7 +22,7 @@ import TicketHandler from './Components/TicketHandler/TicketHandler';
 import TicketDetail from './Components/TicketDetail/TicketDetail';
 import TicketStats from './Components/TicketStats/TicketStats';
 import CompleteProductInfo from './Components/CompleteProductInfo/CompleteProductInfo';
-import BackupTickets from './Components/TicketHandler/RestoreTickets/BackupTickets/BackupTickets';
+// import BackupTickets from './Components/TicketHandler/RestoreTickets/BackupTickets/BackupTickets';
 import RestoreTickets from './Components/TicketHandler/RestoreTickets/RestoreTickets';
 import Sucursal from './Components/Sucursal/Sucursal';
 import UserSucursal from './Components/Sucursal/UserSucursal/UserSucursal';
@@ -31,6 +31,7 @@ import { fetchOneSucursal } from './features/sucursal/sucursalSlice';
 import Cookies from 'universal-cookie';
 import Faltante from './pages/Faltante/Faltante';
 import Listado from './pages/Listado/Listado';
+import Membership from './Components/Membership/Membership';
 
 
 function App() {
@@ -39,10 +40,10 @@ function App() {
   let user = cookie.get('user')
   useEffect(()=>{
     dispatch( fetchAllProducts() )
-  }, [])
+  }, [dispatch])
   useEffect(()=>{
     dispatch( fetchOneSucursal({filter: 'UserId', value: user?.id}) )
-  }, [user])
+  }, [dispatch, user])
 
   return (
     <div className="App">
@@ -55,8 +56,7 @@ function App() {
         <Route path ="/upload/product" element={<UploadProduct></UploadProduct>} />
         <Route path ="/delivery" element={<Delivery/>} />
         <Route path ="/catalog" element={<Catalog/>} />
-        {/* Next Line Deprecated */}
-        {/* <Route path ="/search" element={<Search/>} /> */}
+        <Route path ="/search" element={<Search/>} />
         <Route path ="/printest" element={<Example/>} />
         <Route path ="/update/price" element={<UpdatePrice/>} />
         <Route path ="/calculator" element={<Calculator/>} />
@@ -75,6 +75,7 @@ function App() {
         <Route path ="/complete/product/:attribute" element={<CompleteProductInfo/>} />
         {/* <Route path ="/complete/product/:attribute" element={<CompletePCompra/>} /> */}
 
+        <Route path ="/membership" element={<Membership/>} />
       </Routes>
     </div>
   );
