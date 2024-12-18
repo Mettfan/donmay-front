@@ -31,7 +31,8 @@ function UploadProduct() {
   }, [dispatch]);
 
   // Solo realiza la verificación cuando los productos estén cargados
-  const productLimit = user?.bought || 0;
+  // const productLimit = user?.bought || 0;
+  const productLimit = 100;
   const canCreateProduct = userProducts && userProducts.length < productLimit;
 
   console.log(user, "!!!", userProducts);
