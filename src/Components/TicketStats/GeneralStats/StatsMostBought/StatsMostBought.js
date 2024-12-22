@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAnalytics } from '../../../../features/analytics/analyticSlice';
-import './StatsMostBought.css'
-function StatsMostBought(props){
+import './StatsMostdan.css'
+function StatsMostdan(props){
     let dispatch = useDispatch()
     let analytic = useSelector(state => state?.analytics?.analytic)
     
     useEffect(() => {
-        dispatch(getAnalytics({analytic: 'mostBought'}))
+        dispatch(getAnalytics({analytic: 'mostdan'}))
     }, [])
     let tickets = props?.tickets || []
     let [mostSoldProducts, setMostSoldProducts] = useState([])
@@ -23,7 +23,7 @@ function StatsMostBought(props){
     }
     
     return <>
-        <div className={'statsMostBoughtbackGround'} >
+        <div className={'statsMostdanbackGround'} >
             {'Top: ' + props?.top}
             {/* {tickets?.map((ticket) => {
             
@@ -46,4 +46,4 @@ function StatsMostBought(props){
     </>
 }
 
-export default StatsMostBought
+export default StatsMostdan

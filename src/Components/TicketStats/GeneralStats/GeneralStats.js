@@ -11,12 +11,12 @@ function GeneralStats() {
   let dispatch = useDispatch();
   let tickets = useSelector((state) => state.products.tickets.response);
   let totalInvest = useSelector((state) => state.products.totalInvest);
-  let [typeTicket, setTypeTicket] = useState("mostBought");
+  let [typeTicket, setTypeTicket] = useState("mostdan");
   let [investType, setInvestType] = useState("Venta");
   let [operator, setOperator] = useState("-");
 
   function switchTypeTicket() {
-    setTypeTicket(typeTicket === "mostBought" ? "mostSold" : "mostBought");
+    setTypeTicket(typeTicket === "mostdan" ? "mostSold" : "mostdan");
   }
 
   function switchInvestType() {

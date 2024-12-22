@@ -144,7 +144,7 @@ function UserDetail(props) {
             {user.phone ? <div>{user.phone}</div> : null}
           </div>
           <div className="userInfo">Privileges: {user.privileges}</div>
-          <div className="userInfo">Productos disponibles: {user.bought}</div>
+          <div className="userInfo">Productos disponibles: {user.dan}</div>
           <div className="userInfo">User ID: {user.id}</div>
           <button onClick={openOrCloseModal} className="editButton">
             Editar

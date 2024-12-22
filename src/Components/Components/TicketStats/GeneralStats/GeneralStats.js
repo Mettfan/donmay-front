@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Income from './Income/Income';
 import Outcome from './Outcome/Outcome';
-import StatsMostBought from './StatsMostBought/StatsMostBought';
+import StatsMostdan from './StatsMostdan/StatsMostdan';
 import StatsMostSold from './StatsMostSold/StatsMostSold';
 import './GeneralStats.css'
 import CalculateMargin from './CalculateMargin/CalculateMargin';
@@ -11,11 +11,11 @@ function GeneralStats() {
     let dispatch = useDispatch()
     let tickets = useSelector(state => state.products.tickets.response)
     let totalInvest = useSelector( state => state.products.totalInvest)
-    let [typeTicket, setTypeTicket] = useState('mostBought')
+    let [typeTicket, setTypeTicket] = useState('mostdan')
     let [investType, setInvestType] = useState('Venta')
     let [operator, setOperator] = useState('-')
     function switchTypeTicket(){
-        setTypeTicket( typeTicket === 'mostBought' ? 'mostSold' : 'mostBought')
+        setTypeTicket( typeTicket === 'mostdan' ? 'mostSold' : 'mostdan')
     }
     function switchInvestType(){
         setInvestType( investType === 'Venta' ? 'Compra' : 'Venta')
@@ -40,8 +40,8 @@ function GeneralStats() {
         <input placeholder='Ingrese Top' type={'number'} onChange={(e) => {handleTopOnChange(e)}}></input>
         <StatsMostSold analytic = {typeTicket} top={top} tickets = {tickets}></StatsMostSold>
         {/* Los siguientes componentes han sido abreviados en el anterior */}
-        {/* <StatsMostSold  analytic = 'mostBought' top={10} tickets = {tickets}></StatsMostSold> */}
-        {/* <StatsMostBought top={10} tickets = {tickets}></StatsMostBought> */}
+        {/* <StatsMostSold  analytic = 'mostdan' top={10} tickets = {tickets}></StatsMostSold> */}
+        {/* <StatsMostdan top={10} tickets = {tickets}></StatsMostdan> */}
         <div className='generalStatsIncomeandOutcome'>
             <Income></Income>
             <Outcome></Outcome>
