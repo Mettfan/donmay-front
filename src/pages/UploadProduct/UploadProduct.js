@@ -26,13 +26,12 @@ function UploadProduct() {
     dispatch(getMyProducts({ userId: user.id }));
   };
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchProducts());
+  // }, [dispatch]);
 
   // Solo realiza la verificación cuando los productos estén cargados
   const productLimit = user?.dan || 0;
-  // const productLimit = 100;
   const canCreateProduct = userProducts && userProducts.length < productLimit;
 
   console.log(user, "!!!", userProducts);
