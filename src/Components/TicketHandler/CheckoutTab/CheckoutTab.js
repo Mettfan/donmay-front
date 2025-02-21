@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './CheckoutTab.css'
 import PrintComponent from '../PrintComponent.js/PrintComponent';
-import Pagaré from '../../Pagaré/Pagaré';
+
 function CheckoutTab({total, afterCheckoutCallback, beforeCheckoutCallback, closeCallback, Component, card, interest, recieved, given, onRecievedChange, onGivenChange}) {
     let [recibido, setRecibido] = useState(0)
     let [faltante, setFaltante] = useState(total)
