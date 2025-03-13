@@ -64,7 +64,7 @@
 }
 
 .productTicketCard {
-  background-color: #ffd449;
+  background-color: #E8DCCA;
   color: white;
   display: flex;
   flex-direction: row;
@@ -135,12 +135,19 @@ flex-direction: column;
   display: none;
 }
 .ticketProducts {
-  width: 100%;
+  width: 200px;
+  
   border: solid black 3px;
   display: flex;
   flex-direction: column;
 }
-
+.cardMarker{
+  background-color: rgb(143, 143, 209);
+  width: 100%;
+  height: 100%;
+  color: white;
+  filter: drop-shadow(2px 2px 1px black);
+}
 .ticketTotalOut {
   background-color: rgb(116, 221, 70);
   padding: 5px;
@@ -166,20 +173,23 @@ flex-direction: column;
 
 .productTicketsPrice {
   background-color: greenyellow;
+  border: 2px dotted black;
   padding: 3px;
   color: black;
 }
 
 .productTicketsName {
-  background-color: #ffd449;
+  background-color: transparent;
   padding: 3px;
   color: black;
 }
 
 .productTicketsQuantity {
-  background-color: #ffd449;
+  background-color: transparent;
   padding: 5px;
-  color: black;
+  color: red;
+  filter: drop-shadow(1px 1px 2px white);
+  /* color: black; */
 }
 
 .calendarTicket {

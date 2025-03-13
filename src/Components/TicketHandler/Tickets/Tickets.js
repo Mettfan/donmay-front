@@ -115,6 +115,8 @@ function Tickets() {
     let ticketDate = new Date(ticket?.createdAt);
     return (
       <div className="ticketsContainer">
+
+        {String(ticket.status.split(' ')[0]) === String(true) && <div className="cardMarker">{"TARJETA"}</div>}
         <div onClick={() => nav(`/tickets/${ticket?.id}`)}>
           <div className="ticketId">{ticket?.id}</div>
           <span>{JSON.stringify(ticketDate.toLocaleString())}</span>
@@ -127,7 +129,7 @@ function Tickets() {
                     {product["quantity"]}
                   </div>
                   <div className="productTicketsName">
-                    {product["Producto"]}
+                    {product["Producto"].slice(0, 7) + '...' + product["Producto"].slice(-7) }
                   </div>
                   <div className="productTicketsPrice">
                     {product["P. Venta"]}

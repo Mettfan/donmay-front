@@ -47,6 +47,9 @@ function TicketCreator(props) {
             setCheckout(true)
             console.log('shown');
         }
+        setState({...state, matchList: [], searchValue: ''})
+        document.getElementById('inputSearch').value = ''
+        
     }
     let [state, setState] = useState({
         searchValue: '',
@@ -425,6 +428,7 @@ function TicketCreator(props) {
                 </div>}
             
             {isCheckoutVisible && <div className='checkoutBoxContainer'> 
+                <span>{'TARJETA: '}</span>
                 <input value={ document.getElementById('cardPayment') ? document.getElementById('cardPayment') : false } id='cardPayment' type='checkbox' name='cardPayment' onChange={(e) => handlecardPayment(e)}></input>
                 {String(state.card)}
                 {state.card && <div>
